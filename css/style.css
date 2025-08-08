@@ -1,0 +1,26 @@
+body {
+    font-family: 'calibri', sans-serif;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.report-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px #4BACC6;
+    text-align: center;
+    max-width: 500px;
+}
+h2 {
+    font-size: 1.4em;
+    color: #4BACC6;
+    margin-bottom: 1rem;
+}
+p {
+    font-size: 1.1em;
+    color: #4BACC6;
+    margin: 10px 0;
+}
