@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Nikole Dixon">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+
+  <title>Weekly Commission Report</title>
+
+</head>
+
+<body>
+    <!-- Output in HTML -->
+    <div class="report-box" id="output"></div>
+
+  <script>
+    // Variables
+    let total = 0;       // Variable to sum all of the input, start off at 0
+    let input = 0;       // Variable to gather all of the inputs to sum for the total
+    let sale = 0;        // Variable to convert input to a number so it can be calculated properly
+    let rate = 0;        // Variable to store the correct commission rate
+    let commission = 0;  // Variable to calculate the amount of commission
+    let earnings = 0;    // Variable to calculate the total earnings total sales + commission amount
+
+    // Prompt for username
+    const username = prompt("Enter your name:");
+
+    // Loop to get all of the sales inputs
+    do {
+
+      // Prompt for user sales or "done"
+      input = prompt("Enter the dollar amount for your sales. A single sale at a time.\nEnter 'Done' when you are finished.");
+      
+      // Evaluate if input is "done" and make sure it is all lower case
+      if (input !== null && input.toLowerCase() !== "done") {
+        
+        //Check to see if input is a valid number and not negitive
+        if (!isNaN(sale) && sale >= 0) {
+          
+          // Convert input to a number
+          sale = parseFloat(input);
+
+          // Add to running total
+          total += sale;
+
+          // If there is an error with the user input
+        } else {
+          alert("Please enter a valid positive number or 'Done'.");
+        }
+      }
+    // Sentinel condition
+    } while (input !== null && input.toLowerCase() !== "done");
+
+    // Calculate commission rate
+    
+    if (total >= 1000) {
+      rate = 0.15;               // 15% commission
+    } else if (total >= 500) {
+      rate = 0.10;               // 10% commission
+    } else if (total > 0) {
+      rate = 0.05;               // 5% commission
+    } else 
+        rate = 0;                // 0% commission
+
+    // Calculuate the commission
+    commission = total * rate;
+
+    // Calculate the earnings
+    earnings = total + commission;
+
+    // Format total to have $
+    const formattedTotal = total.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+    });
+
+    // Format commission to have $
+    const formattedCommission = commission.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+    });
+
+    // Format earnings to have $
+    const formattedEarnings = earnings.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD'
+    });
+
+    // Format percentage with 2 decimal places
+    const formattedRate = (rate * 100).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+    }) + '%';
+
+    // Output using ONE innerHTML - use all needed variables for final message
+    document.getElementById("output").innerHTML = `
+    <h2>Hello ${username}, Here is your Weekly Commission Report.</h2>
+    <p>Your sales total is ${formattedTotal}, so your commission rate is ${formattedRate}</p>
+    <p>Your total commission is ${formattedCommission}.</p>
+    <p>Your total earnings are ${formattedEarnings}.</p>
+    `;
+  </script>
+</body>
+</html>
